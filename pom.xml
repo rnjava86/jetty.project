@@ -14,6 +14,8 @@
   <inceptionYear>1995</inceptionYear>
 
   <properties>
+    <java.target>11</java.target>
+    <java.source>11</java.source>
     <jetty.url>http://www.eclipse.org/jetty</jetty.url>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <build-support.version>1.4</build-support.version>
@@ -247,7 +249,7 @@
         </executions>
         <configuration>
           <linkXRef>false</linkXRef>
-          <targetJdk>1.8</targetJdk>
+          <targetJdk>${java.target}</targetJdk>
           <rulesets>
             <ruleset>jetty/pmd_logging_ruleset.xml</ruleset>
           </rulesets>
@@ -438,8 +440,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>${java.source}</source>
+            <target>${java.target}</target>
           </configuration>
         </plugin>
         <plugin>
