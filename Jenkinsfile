@@ -34,15 +34,15 @@ def getFullBuild(jdk, os, mainJdk) {
                   mavenOpts: mavenOpts,
                   mavenLocalRepo: localRepo) {
             // Compile only
-            sh "mvn -V -B clean install -DskipTests -T6 -e"
+            sh "mvn -V -B clean install -DskipTests -T6 -e -Dmaven.test.failure.ignore=false"
             // Javadoc only
-            sh "mvn -V -B javadoc:javadoc -T6 -e"
+            sh "mvn -V -B javadoc:javadoc -T6 -e -Dmaven.test.failure.ignore=false"
             // Testing
             sh "mvn -V -B install -Dmaven.test.failure.ignore=true -T5 -e -Djetty.testtracker.log=true -Pmongodb -Dunix.socket.tmp=" + env.JENKINS_HOME
 
             // Compact 3 build
             if (mainJdk) {
-              sh "mvn -f aggregates/jetty-all-compact3 -V -B -Pcompact3 clean install -T5"
+              sh "mvn -f aggregates/jetty-all-compact3 -V -B -Pcompact3 clean install -T5 -Dmaven.test.failure.ignore=false"
             }
           }
         }
